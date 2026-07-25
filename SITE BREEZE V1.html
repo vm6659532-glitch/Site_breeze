@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Breeze Engenharia | Gestão & Projetos Elétricos</title>
+  
+  <!-- Tipografia Oficial Breeze (Saira) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Configuração de Cores Oficiais Breeze -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            breezeDark: '#162E38',      /* Cor Principal Petróleo */
+            breezeBlue: '#2785E3',      /* Azul Francês */
+            breezeLightBlue: '#51AAF4', /* Azul Argentina */
+            breezeNavy: '#0D1E25',      /* Fundo de Seções e Cards */
+          },
+          fontFamily: {
+            sans: ['Saira', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Script do Instagram para renderizar os embeds -->
+  <script async src="//www.instagram.com/embed.js"></script>
+</head>
+<body class="bg-breezeDark text-white font-sans antialiased selection:bg-breezeBlue selection:text-white">
+
+  <!-- NAVBAR RESPONSIVA -->
+  <nav class="fixed top-0 w-full bg-breezeDark/95 backdrop-blur-md z-50 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+      <!-- Logo Breeze -->
+      <a href="#" class="flex items-center gap-2.5 group">
+        <svg class="w-7 h-7 sm:w-9 sm:h-9 text-breezeBlue transition-transform duration-300 group-hover:scale-105" viewBox="0 0 100 100" fill="currentColor">
+          <path d="M 20,30 C 40,10 60,10 80,30 C 60,50 40,50 20,30 Z" fill="#2785E3"/>
+          <path d="M 20,70 C 40,50 60,50 80,70 C 60,90 40,90 20,70 Z" fill="#51AAF4"/>
+        </svg>
+        <span class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">Breeze<span class="text-breezeBlue">.</span></span>
+      </a>
+
+      <!-- Links Desktop -->
+      <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+        <a href="#solucoes" class="hover:text-breezeLightBlue transition">Soluções</a>
+        <a href="#pacotes" class="hover:text-breezeLightBlue transition">Pacotes & Preços</a>
+        <a href="#provas-sociais" class="hover:text-breezeLightBlue transition text-breezeLightBlue font-bold">Provas Sociais</a>
+        <a href="#diferenciais" class="hover:text-breezeLightBlue transition">Diferenciais</a>
+        <a href="#contato" class="hover:text-breezeLightBlue transition">Contato</a>
+      </div>
+
+      <!-- Ações do Topo -->
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/5588993065093?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20gostaria%20de%20solicitar%20um%20or%C3%A7amento." 
+           target="_blank" 
+           class="bg-breezeBlue hover:bg-breezeLightBlue text-white px-3.5 py-2 sm:px-5 sm:py-2.5 rounded-lg font-semibold text-xs sm:text-sm transition-all duration-300 shadow-lg shadow-breezeBlue/20 flex items-center gap-1.5">
+          <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4 fill-current" viewBox="0 0 24 24"><path d="M12.031 0c-6.627 0-12 5.373-12 12 0 2.159.57 4.26 1.654 6.103l-1.685 6.152 6.293-1.65c1.782.973 3.798 1.495 5.738 1.495 6.627 0 12-5.373 12-12s-5.373-12-12-12zm0 22c-1.802 0-3.57-.481-5.127-1.39l-.367-.217-3.808.998 1.017-3.712-.239-.381c-.996-1.589-1.523-3.418-1.523-5.298 0-5.514 4.486-10 10-10s10 4.486 10 10-4.486 10-10 10z"/></svg>
+          <span class="hidden sm:inline">Falar no </span>WhatsApp
+        </a>
+
+        <!-- Botão Hambúrguer (Mobile) -->
+        <button id="mobile-menu-btn" class="md:hidden text-gray-300 hover:text-white p-2 focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menu Dropdown Mobile -->
+    <div id="mobile-menu" class="hidden md:hidden bg-breezeNavy border-b border-white/10 px-6 py-4 space-y-3">
+      <a href="#solucoes" onclick="toggleMenu()" class="block text-sm text-gray-300 hover:text-white">Soluções</a>
+      <a href="#pacotes" onclick="toggleMenu()" class="block text-sm text-gray-300 hover:text-white">Pacotes & Preços</a>
+      <a href="#provas-sociais" onclick="toggleMenu()" class="block text-sm text-breezeLightBlue font-bold">Provas Sociais</a>
+      <a href="#diferenciais" onclick="toggleMenu()" class="block text-sm text-gray-300 hover:text-white">Diferenciais</a>
+      <a href="#contato" onclick="toggleMenu()" class="block text-sm text-gray-300 hover:text-white">Contato</a>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="pt-28 sm:pt-36 pb-12 sm:pb-20 px-4 sm:px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+    <div>
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-breezeBlue/10 border border-breezeBlue/30 text-breezeLightBlue text-[11px] sm:text-xs font-semibold uppercase tracking-wider mb-4 sm:mb-6">
+        <span class="w-2 h-2 rounded-full bg-breezeBlue animate-pulse"></span> Projetos &amp; Gestão em Engenharia
+      </div>
+      <h1 class="text-3xl sm:text-5xl md:text-6xl font-extrabold leading-tight mb-4 sm:mb-6">
+        Projetos Fotovoltaicos de <span class="text-transparent bg-clip-text bg-gradient-to-r from-breezeBlue to-breezeLightBlue">Excelência</span>.
+      </h1>
+      <p class="text-gray-300 text-sm sm:text-lg mb-6 sm:mb-8 leading-relaxed">
+        Garantimos que sua empresa tenha o suporte técnico necessário para entregar projetos impecáveis. Elaboração de projetos elétricos, homologação solar, subestações, medição agrupada e laudos técnicos com agilidade e precisão.
+      </p>
+      
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-start">
+        <a href="https://wa.me/5588993065093?text=Ol%C3%A1!%20Gostaria%20de%20falar%20com%20um%20engenheiro%20sobre%20um%20projeto." 
+           target="_blank" 
+           class="bg-breezeBlue hover:bg-breezeLightBlue text-white px-6 py-3.5 rounded-xl font-bold text-center transition-all duration-300 shadow-xl shadow-breezeBlue/25 text-sm sm:text-base">
+          Solicitar Projeto com Engenheiro
+        </a>
+        <a href="#pacotes" 
+           class="bg-white/5 hover:bg-white/10 border border-white/10 text-white px-6 py-3.5 rounded-xl font-semibold text-center transition text-sm sm:text-base">
+          Ver Pacotes & Preços
+        </a>
+      </div>
+
+      <div class="mt-8 pt-6 border-t border-white/10 flex items-center gap-6 sm:gap-8 justify-start">
+        <div>
+          <p class="text-xl sm:text-2xl font-extrabold text-white">100%</p>
+          <p class="text-[11px] sm:text-xs text-gray-400">Conformidade ANEEL/CREA</p>
+        </div>
+        <div class="h-8 w-px bg-white/10"></div>
+        <div>
+          <p class="text-xl sm:text-2xl font-extrabold text-white">Agilidade</p>
+          <p class="text-[11px] sm:text-xs text-gray-400">Prazos Cumpridos com Precisão</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Painel de Status Interativo Mobile Friendly -->
+    <div class="relative flex justify-center mt-4 md:mt-0">
+      <div class="absolute -inset-1 bg-gradient-to-r from-breezeBlue to-breezeLightBlue rounded-2xl blur-xl opacity-30"></div>
+      <div class="relative bg-breezeNavy border border-white/10 p-5 sm:p-8 rounded-2xl w-full max-w-lg shadow-2xl">
+        <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4 sm:mb-6">
+          <span class="text-xs text-gray-400 font-medium">Fluxo de Homologação</span>
+          <span class="text-[10px] sm:text-xs bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded-full font-semibold">Parecer Emitido</span>
+        </div>
+        
+        <div class="space-y-3 sm:space-y-4">
+          <div class="bg-breezeDark p-3.5 sm:p-4 rounded-xl border border-white/5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] sm:text-xs text-gray-400">Projeto Executivo</p>
+              <p class="font-bold text-xs sm:text-sm text-white">Diagrama Unifilar &amp; Trifilar</p>
+            </div>
+            <span class="text-breezeLightBlue font-bold text-xs sm:text-sm">Concluído</span>
+          </div>
+
+          <div class="bg-breezeDark p-3.5 sm:p-4 rounded-xl border border-white/5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] sm:text-xs text-gray-400">Tramitação</p>
+              <p class="font-bold text-xs sm:text-sm text-white">Entrada na Concessionária</p>
+            </div>
+            <span class="text-breezeLightBlue font-bold text-xs sm:text-sm">Aprovado</span>
+          </div>
+
+          <div class="bg-breezeDark p-3.5 sm:p-4 rounded-xl border border-white/5 flex items-center justify-between">
+            <div>
+              <p class="text-[10px] sm:text-xs text-gray-400">Anotação de Responsabilidade</p>
+              <p class="font-bold text-xs sm:text-sm text-white">ART Registrada no CREA</p>
+            </div>
+            <span class="text-breezeLightBlue font-bold text-xs sm:text-sm">Emissão OK</span>
+          </div>
+        </div>
+
+        <div class="mt-5 pt-3 border-t border-white/10 text-center">
+          <p class="text-[11px] sm:text-xs text-gray-400">Simplificamos a parte técnica para que sua empresa foque em vender e crescer.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SOLUÇÕES E SERVIÇOS -->
+  <section id="solucoes" class="py-12 sm:py-20 bg-breezeNavy border-y border-white/5">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+        <h2 class="text-2xl sm:text-4xl font-extrabold mb-3 sm:mb-4">Soluções Especializadas em Engenharia</h2>
+        <p class="text-gray-400 text-xs sm:text-base">Suporte técnico de alto nível focado em integradores solares, engenheiros e clientes corporativos.</p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+        <!-- Card 1 -->
+        <div class="bg-breezeDark p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-breezeBlue/50 transition duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-breezeBlue/10 rounded-xl flex items-center justify-center text-breezeBlue mb-4 sm:mb-6 font-bold text-lg sm:text-xl">
+              ⚡
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Projetos &amp; Homologação Solar</h3>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+              Elaboração completa de projetos executivos de micro e minigeracao distribuida com rápida tramitação junto às concessionárias.
+            </p>
+          </div>
+          <a href="#pacotes" class="text-breezeLightBlue font-semibold text-xs sm:text-sm hover:underline inline-flex items-center gap-1">Ver Pacotes →</a>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="bg-breezeDark p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-breezeBlue/50 transition duration-300 flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-breezeBlue/10 rounded-xl flex items-center justify-center text-breezeBlue mb-4 sm:mb-6 font-bold text-lg sm:text-xl">
+              🏢
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Subestações &amp; Medição Agrupada</h3>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+              Dimensionamento e desenvolvimento de projetos elétricos para média tensão, subestações abrigadas/aéreas e agrupamentos residenciais/comerciais.
+            </p>
+          </div>
+          <a href="#pacotes" class="text-breezeLightBlue font-semibold text-xs sm:text-sm hover:underline inline-flex items-center gap-1">Ver Valores →</a>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-breezeDark p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-breezeBlue/50 transition duration-300 flex flex-col justify-between sm:col-span-2 md:col-span-1">
+          <div>
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-breezeBlue/10 rounded-xl flex items-center justify-center text-breezeBlue mb-4 sm:mb-6 font-bold text-lg sm:text-xl">
+              📋
+            </div>
+            <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3">Laudos &amp; Consultoria Tarifária</h3>
+            <p class="text-gray-400 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+              Análise técnica detalhada, laudos de conformidade, refaturamento de faturas de energia e resolução de pendências regulatórias.
+            </p>
+          </div>
+          <a href="https://wa.me/5588993065093?text=Quero%20saber%20mais%20sobre%20Consultoria%20e%20Laudos%20Tecnicos" target="_blank" class="text-breezeLightBlue font-semibold text-xs sm:text-sm hover:underline inline-flex items-center gap-1">Consultar Engenheiro →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANOS E PACOTES DE ENGENHARIA -->
+  <section id="pacotes" class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-12">
+      <span class="text-breezeLightBlue font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-1 sm:mb-2 block">Tabela de Investimento</span>
+      <h2 class="text-2xl sm:text-4xl font-extrabold mb-3 sm:mb-4">Planos e Pacotes de Engenharia</h2>
+      <p class="text-gray-300 text-xs sm:text-base">
+        Soluções completas em elaboração e homologação de projetos elétricos, dimensionadas para atender desde integradores solares até grandes empreendimentos.
+      </p>
+    </div>
+
+    <!-- Abas de Navegação -->
+    <div class="flex overflow-x-auto pb-2 sm:pb-0 justify-start sm:justify-center gap-2 sm:gap-3 mb-8 sm:mb-12 no-scrollbar">
+      <button onclick="switchTab('solar')" id="tab-solar" class="whitespace-nowrap px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 bg-breezeBlue text-white shadow-lg shadow-breezeBlue/25 flex-shrink-0">
+        ☀️ Energia Solar
+      </button>
+      <button onclick="switchTab('subestacao')" id="tab-subestacao" class="whitespace-nowrap px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 bg-breezeNavy text-gray-400 hover:text-white border border-white/10 flex-shrink-0">
+        🏭 Subestação
+      </button>
+      <button onclick="switchTab('emuc')" id="tab-emuc" class="whitespace-nowrap px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 bg-breezeNavy text-gray-400 hover:text-white border border-white/10 flex-shrink-0">
+        🏢 EMUC (Agrupamentos)
+      </button>
+    </div>
+
+    <!-- CONTEÚDO DA ABA 1: ENERGIA SOLAR -->
+    <div id="content-solar" class="space-y-8 sm:space-y-12">
+      <div>
+        <h3 class="text-lg sm:text-xl font-bold mb-1 sm:mb-2 flex items-center gap-2">
+          <span class="text-breezeLightBlue">✦</span> Pacotes de Projetos <span class="text-[10px] sm:text-xs bg-breezeBlue/20 text-breezeLightBlue px-2 py-0.5 rounded-full font-semibold">Integradores</span>
+        </h3>
+        <p class="text-gray-400 text-xs sm:text-sm mb-6">Garanta economia e prioridade no fluxo de homologação para a sua empresa.</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+          <!-- Pacote Trio -->
+          <div class="bg-breezeNavy p-6 sm:p-8 rounded-2xl border border-white/10 hover:border-breezeBlue/50 transition">
+            <h4 class="text-base sm:text-lg font-bold text-white mb-1">Pacote Trio</h4>
+            <p class="text-xs text-gray-400 mb-4">Combustível inicial para demandas recorrentes.</p>
+            <div class="mb-6">
+              <span class="text-2xl sm:text-3xl font-extrabold text-white">R$ 1.500,00</span>
+              <span class="text-xs text-gray-400 block mt-1">(Apenas R$ 500,00 por projeto)</span>
+            </div>
+            <ul class="text-xs text-gray-300 space-y-2 mb-6">
+              <li class="flex items-center gap-2">✓ Inclui 3 Projetos de Homologação</li>
+              <li class="flex items-center gap-2">✓ Tramitação junto à Concessionária</li>
+              <li class="flex items-center gap-2">✓ Emissão de ART / TRT</li>
+            </ul>
+            <a href="https://wa.me/5588993065093?text=Quero%20contratar%20o%20Pacote%20Trio%20(3%20Projetos)" target="_blank" class="block text-center bg-breezeDark hover:bg-breezeBlue text-white text-xs sm:text-sm font-bold py-3 rounded-xl transition border border-white/10">Contratar Pacote Trio</a>
+          </div>
+
+          <!-- Pacote Escala -->
+          <div class="bg-gradient-to-b from-breezeNavy to-breezeDark p-6 sm:p-8 rounded-2xl border-2 border-breezeBlue transition relative shadow-xl">
+            <span class="absolute -top-3 right-4 sm:right-6 bg-breezeBlue text-white text-[9px] sm:text-[10px] font-extrabold px-2.5 py-0.5 rounded-full uppercase tracking-wider">Mais Vendido</span>
+            <h4 class="text-base sm:text-lg font-bold text-white mb-1">Pacote Escala</h4>
+            <p class="text-xs text-gray-400 mb-4">Máxima economia para integradores ativos.</p>
+            <div class="mb-6">
+              <span class="text-2xl sm:text-3xl font-extrabold text-breezeLightBlue">R$ 2.200,00</span>
+              <span class="text-xs text-gray-400 block mt-1">(Apenas R$ 440,00 por projeto)</span>
+            </div>
+            <ul class="text-xs text-gray-300 space-y-2 mb-6">
+              <li class="flex items-center gap-2">✓ Inclui 5 Projetos de Homologação</li>
+              <li class="flex items-center gap-2">✓ Prioridade na Fila de Execução</li>
+              <li class="flex items-center gap-2">✓ Suporte direto com o Engenheiro</li>
+            </ul>
+            <a href="https://wa.me/5588993065093?text=Quero%20contratar%20o%20Pacote%20Escala%20(5%20Projetos)" target="_blank" class="block text-center bg-breezeBlue hover:bg-breezeLightBlue text-white text-xs sm:text-sm font-bold py-3 rounded-xl transition shadow-lg shadow-breezeBlue/30">Contratar Pacote Escala</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabela com Rolagem Mobile -->
+      <div>
+        <h3 class="text-lg sm:text-xl font-bold mb-3 flex items-center gap-2">
+          <span class="text-breezeLightBlue">✦</span> Projetos Avulsos <span class="text-xs text-gray-400 font-normal">(Por Potência)</span>
+        </h3>
+        
+        <div class="overflow-x-auto bg-breezeNavy rounded-2xl border border-white/10">
+          <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[500px]">
+            <thead>
+              <tr class="border-b border-white/10 bg-breezeDark/50 text-breezeLightBlue">
+                <th class="p-3.5 font-bold">Faixa (kWp)</th>
+                <th class="p-3.5 font-bold">Detalhes do Serviço</th>
+                <th class="p-3.5 font-bold text-right">Ação</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-white/5 text-gray-300">
+              <tr class="hover:bg-white/5 transition">
+                <td class="p-3.5 font-semibold text-white">0,00 a 5,00 kWp</td>
+                <td class="p-3.5">Homologação completa + ART/TRT</td>
+                <td class="p-3.5 text-right"><a href="https://wa.me/5588993065093?text=Orcamento%20Projeto%20Ate%205kWp" target="_blank" class="text-breezeLightBlue font-bold hover:underline">Consultar →</a></td>
+              </tr>
+              <tr class="hover:bg-white/5 transition">
+                <td class="p-3.5 font-semibold text-white">5,01 a 10,00 kWp</td>
+                <td class="p-3.5">Homologação completa + ART/TRT</td>
+                <td class="p-3.5 text-right"><a href="https://wa.me/5588993065093?text=Orcamento%20Projeto%205.01%20a%2010kWp" target="_blank" class="text-breezeLightBlue font-bold hover:underline">Consultar →</a></td>
+              </tr>
+              <tr class="hover:bg-white/5 transition">
+                <td class="p-3.5 font-semibold text-white">10,01 a 20,00 kWp</td>
+                <td class="p-3.5">Homologação completa + ART/TRT</td>
+                <td class="p-3.5 text-right"><a href="https://wa.me/5588993065093?text=Orcamento%20Projeto%2010.01%20a%2020kWp" target="_blank" class="text-breezeLightBlue font-bold hover:underline">Consultar →</a></td>
+              </tr>
+              <tr class="hover:bg-white/5 transition">
+                <td class="p-3.5 font-semibold text-white">Acima de 20,01 kWp</td>
+                <td class="p-3.5">Viabilidade + Proteções específicas + ART</td>
+                <td class="p-3.5 text-right"><a href="https://wa.me/5588993065093?text=Orcamento%20Projeto%20Acima%20de%2020kWp" target="_blank" class="text-breezeLightBlue font-bold hover:underline">Consulta →</a></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO DA ABA 2: SUBESTAÇÃO -->
+    <div id="content-subestacao" class="hidden">
+      <div class="bg-breezeNavy p-6 sm:p-12 rounded-3xl border border-white/10 grid md:grid-cols-3 gap-6 sm:gap-8 items-center">
+        <div class="md:col-span-2">
+          <span class="text-breezeLightBlue font-bold text-[10px] sm:text-xs uppercase tracking-wider mb-1 block">Média Tensão</span>
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-3">Projeto de Subestação até 300 kVA</h3>
+          <p class="text-gray-300 text-xs sm:text-sm mb-6 leading-relaxed">
+            Soluções em média tensão com conformidade técnica rigorosa para indústrias, comércios e instalações de grande porte.
+          </p>
+
+          <div class="grid sm:grid-cols-2 gap-2.5 text-xs text-gray-300 mb-6">
+            <div class="flex items-center gap-2"><span class="text-breezeLightBlue font-bold">✓</span> Projeto executivo completo</div>
+            <div class="flex items-center gap-2"><span class="text-breezeLightBlue font-bold">✓</span> Memorial descritivo</div>
+            <div class="flex items-center gap-2"><span class="text-breezeLightBlue font-bold">✓</span> Tramitação na Concessionária</div>
+            <div class="flex items-center gap-2"><span class="text-breezeLightBlue font-bold">✓</span> Emissão da ART/TRT</div>
+          </div>
+        </div>
+
+        <div class="bg-breezeDark p-6 rounded-2xl border border-white/10 text-center">
+          <span class="text-xs text-gray-400 block mb-1">Investimento Fixo</span>
+          <span class="text-2xl sm:text-3xl font-extrabold text-breezeLightBlue block mb-4">R$ 4.500,00</span>
+          <a href="https://wa.me/5588993065093?text=Solicitar%20Projeto%20de%20Subestacao%20300kVA" target="_blank" class="block w-full bg-breezeBlue hover:bg-breezeLightBlue text-white font-bold py-3 rounded-xl text-xs sm:text-sm transition">Solicitar Projeto</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- CONTEÚDO DA ABA 3: EMUC -->
+    <div id="content-emuc" class="hidden">
+      <div class="bg-breezeNavy p-6 sm:p-12 rounded-3xl border border-white/10">
+        <div class="max-w-2xl mb-6 sm:mb-8">
+          <span class="text-breezeLightBlue font-bold text-[10px] sm:text-xs uppercase tracking-wider mb-1 block">Unidades Consumidoras</span>
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-2">Projetos de EMUC & Agrupamentos</h3>
+          <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+            Projetos de entrada de energia e agrupadores para condomínios residenciais e comerciais.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-6 sm:gap-8 mb-6">
+          <div class="bg-breezeDark p-5 sm:p-6 rounded-2xl border border-white/5 space-y-3">
+            <h4 class="font-bold text-white text-sm sm:text-base">Estrutura de Preço:</h4>
+            <div class="flex justify-between items-center pb-2.5 border-b border-white/10 text-xs sm:text-sm">
+              <span class="text-gray-300">Taxa Base do Projeto</span>
+              <span class="font-bold text-breezeLightBlue">R$ 800,00</span>
+            </div>
+            <div class="flex justify-between items-center pb-2.5 border-b border-white/10 text-xs sm:text-sm">
+              <span class="text-gray-300">De 5 a 10 Unidades</span>
+              <span class="font-bold text-white">+ R$ 100,00 / un</span>
+            </div>
+            <div class="flex justify-between items-center text-xs sm:text-sm">
+              <span class="text-gray-300">De 11 a 20 Unidades</span>
+              <span class="font-bold text-white">+ R$ 90,00 / un</span>
+            </div>
+          </div>
+
+          <div class="bg-breezeBlue/10 border border-breezeBlue/30 p-5 sm:p-6 rounded-2xl flex flex-col justify-between">
+            <div>
+              <span class="text-[10px] sm:text-xs font-bold text-breezeLightBlue uppercase block mb-1">Simulação Exemplo</span>
+              <h5 class="font-bold text-white text-xs sm:text-sm mb-2">Para 8 Unidades Consumidoras:</h5>
+              <p class="text-[11px] sm:text-xs text-gray-300 font-mono bg-breezeDark p-2.5 rounded-lg border border-white/5 mb-4">
+                Taxa Base (R$ 800) + [8 × R$ 100] = R$ 1.600,00
+              </p>
+            </div>
+            <a href="https://wa.me/5588993065093?text=Gostaria%20de%20calcular%20um%20projeto%20EMUC" target="_blank" class="block text-center bg-breezeBlue hover:bg-breezeLightBlue text-white font-bold text-xs sm:text-sm py-3 rounded-xl transition">Simular Meu Projeto</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO EXCLUSIVA E DESTACADA DE PROVAS SOCIAIS -->
+  <section id="provas-sociais" class="py-12 sm:py-20 bg-breezeNavy border-y border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6">
+      <div class="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+        <span class="text-breezeLightBlue font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-1 block">Casos Reais & Bastidores</span>
+        <h2 class="text-2xl sm:text-4xl font-extrabold mb-3">Provas Sociais em Vídeo</h2>
+        <p class="text-gray-300 text-xs sm:text-base">
+          Acompanhe nossos engenheiros em campo, análises técnicas e aprovações na prática.
+        </p>
+      </div>
+
+      <!-- Barra de Rolagem de Seleção dos 3 Vídeos -->
+      <div class="flex overflow-x-auto gap-3 pb-4 mb-8 justify-start sm:justify-center no-scrollbar">
+        <button onclick="loadVideo('https://www.instagram.com/reel/DbGXuDdBxZU/?igsh=MTF0a25tcmo0Z3FqMw==', this)" class="video-btn px-5 py-3 rounded-2xl bg-breezeBlue text-white text-xs sm:text-sm font-bold transition flex items-center gap-2 flex-shrink-0 border border-breezeLightBlue shadow-lg">
+          🎥 <span>Vídeo #1 - Bastidores e Resultados</span>
+        </button>
+        <button onclick="loadVideo('https://www.instagram.com/reel/DalPzpuBzme/?igsh=cGJ4dW16aXd0Z2hp', this)" class="video-btn px-5 py-3 rounded-2xl bg-breezeDark hover:bg-breezeBlue/30 text-gray-300 hover:text-white text-xs sm:text-sm font-semibold transition flex items-center gap-2 flex-shrink-0 border border-white/10">
+          🎥 <span>Vídeo #2 - Execução Técnica</span>
+        </button>
+        <button onclick="loadVideo('https://www.instagram.com/reel/DafoddrBEMD/?igsh=dnVrZm4xZjQ2OHNk', this)" class="video-btn px-5 py-3 rounded-2xl bg-breezeDark hover:bg-breezeBlue/30 text-gray-300 hover:text-white text-xs sm:text-sm font-semibold transition flex items-center gap-2 flex-shrink-0 border border-white/10">
+          🎥 <span>Vídeo #3 - Análise de Projeto</span>
+        </button>
+      </div>
+
+      <!-- Player Principal do Vídeo Ativo -->
+      <div class="max-w-md mx-auto bg-breezeDark p-4 sm:p-6 rounded-3xl border border-white/10 shadow-2xl flex justify-center">
+        <div id="video-container" class="w-full flex justify-center">
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DbGXuDdBxZU/?igsh=MTF0a25tcmo0Z3FqMw==" data-instgrm-version="14" style="background:#162E38; border:0; border-radius:16px; box-shadow:none; margin:0; max-width:540px; min-width:280px; padding:0; width:100%;">
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DIFERENCIAIS -->
+  <section class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid sm:grid-cols-3 gap-6">
+      <div class="flex items-start gap-3">
+        <div class="text-breezeBlue font-bold text-lg">✓</div>
+        <div>
+          <h4 class="font-bold text-xs sm:text-sm text-white mb-1">Acompanhamento do Protocolo</h4>
+          <p class="text-[11px] sm:text-xs text-gray-400">Monitoramento contínuo até a aprovação na concessionária.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <div class="text-breezeBlue font-bold text-lg">✓</div>
+        <div>
+          <h4 class="font-bold text-xs sm:text-sm text-white mb-1">Agilidade Garantida</h4>
+          <p class="text-[11px] sm:text-xs text-gray-400">Prazos otimizados para não travar suas vendas.</p>
+        </div>
+      </div>
+      <div class="flex items-start gap-3">
+        <div class="text-breezeBlue font-bold text-lg">✓</div>
+        <div>
+          <h4 class="font-bold text-xs sm:text-sm text-white mb-1">Conformidade Normativa</h4>
+          <p class="text-[11px] sm:text-xs text-gray-400">Projetos 100% alinhados com as normas da concessionária e ABNT.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MANIFESTO -->
+  <section id="diferenciais" class="py-12 sm:py-20 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="bg-gradient-to-r from-breezeNavy to-breezeDark border border-white/10 p-6 sm:p-16 rounded-3xl grid md:grid-cols-2 gap-8 sm:gap-12 items-center">
+      <div>
+        <span class="text-breezeLightBlue font-bold text-[10px] sm:text-xs uppercase tracking-widest mb-1 sm:mb-2 block">Nosso Manifesto</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold mb-4 sm:mb-6">A energia impulsiona o futuro e constrói sonhos.</h2>
+        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6">
+          Acreditamos que simplificar a parte técnica para nossos clientes é o que realmente importa. Estamos aqui para garantir que cada detalhe dos seus projetos seja conduzido com precisão, agilidade e total conformidade.
+        </p>
+        <p class="text-gray-300 text-xs sm:text-sm leading-relaxed">
+          Seja a mudança que move o mundo. Com a Breeze, juntos transformamos técnica em inovação e inovação em um futuro mais seguro.
+        </p>
+      </div>
+      <div class="space-y-3 sm:space-y-4">
+        <div class="bg-breezeDark/80 p-4 sm:p-5 rounded-2xl border border-white/5">
+          <h4 class="font-bold text-breezeLightBlue text-sm sm:text-base mb-0.5">Clareza na Entrega</h4>
+          <p class="text-[11px] sm:text-xs text-gray-400">Comunicação direta, sem termos desnecessariamente complicados.</p>
+        </div>
+        <div class="bg-breezeDark/80 p-4 sm:p-5 rounded-2xl border border-white/5">
+          <h4 class="font-bold text-breezeLightBlue text-sm sm:text-base mb-0.5">Expertise &amp; Know-How</h4>
+          <p class="text-[11px] sm:text-xs text-gray-400">Corpo técnico preparado para destravar exigências de concessionárias.</p>
+        </div>
+        <div class="bg-breezeDark/80 p-4 sm:p-5 rounded-2xl border border-white/5">
+          <h4 class="font-bold text-breezeLightBlue text-sm sm:text-base mb-0.5">Compromisso com o Cliente</h4>
+          <p class="text-[11px] sm:text-xs text-gray-400">Parceria estratégica de longo prazo para ajudar seu negócio a prosperar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL DE CONTATO -->
+  <section id="contato" class="py-12 sm:py-20 px-4 sm:px-6 max-w-4xl mx-auto text-center">
+    <div class="bg-gradient-to-b from-breezeNavy to-breezeDark border border-breezeBlue/30 p-8 sm:p-12 rounded-3xl relative shadow-2xl">
+      <h2 class="text-2xl sm:text-4xl font-extrabold mb-3 sm:mb-4">
+        Pronto para homologar seus projetos sem dor de cabeça?
+      </h2>
+      <p class="text-gray-300 mb-6 sm:mb-8 max-w-xl mx-auto text-xs sm:text-base">
+        Fale diretamente com nosso time de engenharia e receba uma análise do seu projeto.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center">
+        <a href="https://wa.me/5588993065093?text=Ol%C3%A1!%20Gostaria%20de%20solicitar%20um%20or%C3%A7amento%20de%20projeto." 
+           target="_blank" 
+           class="w-full sm:w-auto bg-breezeBlue hover:bg-breezeLightBlue text-white px-8 py-3.5 rounded-xl font-bold transition duration-300 shadow-xl shadow-breezeBlue/30 text-xs sm:text-sm">
+          Enviar Mensagem no WhatsApp
+        </a>
+        <a href="https://instagram.com/breezengenharia" 
+           target="_blank" 
+           class="w-full sm:w-auto bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-3.5 rounded-xl font-bold transition duration-300 text-xs sm:text-sm">
+          Siga @breezengenharia
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RODAPÉ -->
+  <footer class="bg-breezeNavy border-t border-white/10 py-8 sm:py-12 px-4 sm:px-6">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 sm:gap-6 text-center md:text-left">
+      <div class="flex items-center gap-3">
+        <span class="text-xl sm:text-2xl font-bold text-white">Breeze<span class="text-breezeBlue">.</span></span>
+        <span class="text-[11px] sm:text-xs text-gray-400">| Engenharia, Gestão &amp; Projetos</span>
+      </div>
+      
+      <div class="flex items-center gap-4 sm:gap-6 text-xs sm:text-sm text-gray-400">
+        <a href="https://wa.me/5588993065093" target="_blank" class="hover:text-white transition">(88) 99306-5093</a>
+        <a href="https://instagram.com/breezengenharia" target="_blank" class="hover:text-white transition">@breezengenharia</a>
+      </div>
+
+      <p class="text-[10px] sm:text-xs text-gray-500">
+        © 2026 Breeze Engenharia. Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script>
+    // Menu Mobile
+    const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    function toggleMenu() {
+      mobileMenu.classList.add('hidden');
+    }
+
+    // Abas dos Pacotes (Solar, Subestação, EMUC)
+    function switchTab(tabName) {
+      document.getElementById('content-solar').classList.add('hidden');
+      document.getElementById('content-subestacao').classList.add('hidden');
+      document.getElementById('content-emuc').classList.add('hidden');
+
+      const tabs = ['solar', 'subestacao', 'emuc'];
+      tabs.forEach(tab => {
+        const btn = document.getElementById(`tab-${tab}`);
+        if(btn) {
+          btn.className = "whitespace-nowrap px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 bg-breezeNavy text-gray-400 hover:text-white border border-white/10 flex-shrink-0";
+        }
+      });
+
+      const selectedContent = document.getElementById(`content-${tabName}`);
+      if(selectedContent) {
+        selectedContent.classList.remove('hidden');
+      }
+
+      const activeBtn = document.getElementById(`tab-${tabName}`);
+      if(activeBtn) {
+        activeBtn.className = "whitespace-nowrap px-4 py-2.5 sm:px-6 sm:py-3 rounded-xl font-bold text-xs sm:text-sm transition-all duration-300 bg-breezeBlue text-white shadow-lg shadow-breezeBlue/25 flex-shrink-0";
+      }
+    }
+
+    // Função para Troca Dinâmica do Vídeo Ativo
+    function loadVideo(url, btnElement) {
+      const container = document.getElementById('video-container');
+      
+      // Limpa e insere o embed do Instagram com a URL especificada
+      container.innerHTML = `
+        <blockquote class="instagram-media" data-instgrm-permalink="${url}" data-instgrm-version="14" style="background:#162E38; border:0; border-radius:16px; box-shadow:none; margin:0; max-width:540px; min-width:280px; padding:0; width:100%;">
+        </blockquote>
+      `;
+
+      // Atualiza estilo visual dos botões do carrossel
+      document.querySelectorAll('.video-btn').forEach(btn => {
+        btn.className = "video-btn px-5 py-3 rounded-2xl bg-breezeDark hover:bg-breezeBlue/30 text-gray-300 hover:text-white text-xs sm:text-sm font-semibold transition flex items-center gap-2 flex-shrink-0 border border-white/10";
+      });
+
+      btnElement.className = "video-btn px-5 py-3 rounded-2xl bg-breezeBlue text-white text-xs sm:text-sm font-bold transition flex items-center gap-2 flex-shrink-0 border border-breezeLightBlue shadow-lg";
+
+      // Dispara re-processamento do script do Instagram
+      if (window.instgrm) {
+        window.instgrm.Embeds.process();
+      }
+    }
+  </script>
+
+</body>
+</html>
